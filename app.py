@@ -100,6 +100,28 @@ def main():
     set_background_image(background_image_url)
 
 
+    
+    custom_css = """
+       <style>
+       body {
+           background-color: #4699d4;
+           color: #ffffff;
+           font-family: Arial, sans-serif;
+       }
+       select {
+           background-color: #000000 !important; /* Black background for select box */
+           color: #ffffff !important; /* White text within select box */
+       }
+       label {
+           color: #ffffff !important; /* White color for select box label */
+       }
+       </style>
+       """
+    st.markdown(custom_css, unsafe_allow_html=True)
+
+
+
+
 
 if __name__ == "__main__":
     main()
