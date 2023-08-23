@@ -1,3 +1,4 @@
+import query as query
 import streamlit as st
 import pickle
 import numpy as np
@@ -9,8 +10,28 @@ import numpy as np
 pipe= pickle.load(open('pipe.pkl','rb'))
 df= pickle.load(open('df.pkl','rb'))
 
-st.title("Laptop Price Predictor")
+# title
+css = """
+<style>
+    .title {
+        font-size: 44px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-top: 20px;
+        text-shadow:
+            -3px 2px 0px black,
+            3px 2px 0px black,
+            2px -4px 0px black,
+            2px 3px 0px black;
+    }
+</style>
+"""
 
+# Display the styled title using markdown
+st.markdown(css, unsafe_allow_html=True)
+st.markdown("<div class='title'>Laptop Price Predictor</div>", unsafe_allow_html=True)
+
+#==============================================================================
 #brand
 company= st.selectbox('Brand',df['Company'].unique())
 
@@ -67,7 +88,10 @@ if st.button('Predict Price'):
     query = np.array([company, type, ram, weight, touchscreen, ips, ppi, cpu, hdd, ssd, gpu, os])
 
     query = query.reshape(1, 12)
-    st.title("The predicted price of this configuration is " + str(int(np.exp(pipe.predict(query)[0]))))
+
+    result=f"<div class='title'>The predicted price of this configuration is \n{str(int(np.exp(pipe.predict(query)[0])))}</div>"
+    # st.title("The predicted price of this configuration is " + str(int(np.exp(pipe.predict(query)[0]))))
+    st.markdown(result, unsafe_allow_html=True)
 
 
 
@@ -76,6 +100,7 @@ def set_background_image(image_url):
     page_bg_img = '''
     <style>
     .stApp {
+        background-position: top;
         background-image: url(%s);
         background-size: cover;
     }
@@ -83,6 +108,7 @@ def set_background_image(image_url):
     @media (max-width: 768px) {
         /* Adjust background size for mobile devices */
         .stApp {
+            background-position: top;
             background-size: contain;
             background-repeat: no-repeat;
         }
