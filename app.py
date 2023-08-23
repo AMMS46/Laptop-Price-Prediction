@@ -152,7 +152,26 @@ def main():
 if __name__ == "__main__":
     main()
 
-st.write('made by Abuzar Mohammed Makeen')
+
+
+css2 = """
+<style>
+    .write {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-top: 20px;
+        text-shadow:
+            -3px 2px 0px black,
+            3px 2px 0px black,
+            2px -4px 0px black,
+            2px 3px 0px black;
+    }
+</style>
+"""
+st.markdown(css2, unsafe_allow_html=True)
+st.write("<div class='write'>made by Abuzar Mohammed Makeen</div>", unsafe_allow_html=True)
+
 
 
 
